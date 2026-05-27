@@ -94,6 +94,11 @@ def merge_invoice_folders(main_directory):
     print("=" * 60)
 
 if __name__ == "__main__":
-    current_dir = os.path.dirname(os.path.abspath(__file__)) if '__file__' in locals() else os.getcwd()
+    if getattr(sys, 'frozen', False):
+        # Kalau jalan sebagai .exe
+        current_dir = os.path.dirname(sys.executable)
+    else:
+        # Kalau jalan sebagai .py biasa
+        current_dir = os.path.dirname(os.path.abspath(__file__))
     merge_invoice_folders(current_dir)
     input("\nTekan Enter untuk menutup jendela ini...")
